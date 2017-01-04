@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/remotecompiler">
+        <file>images/qtc_remote_compiler.png</file>
+    </qresource>
+</RCC>
