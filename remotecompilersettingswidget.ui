@@ -21,7 +21,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QFrame" name="CNTFrame">
+    <widget class="QFrame" name="CHTFrame">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -36,7 +36,7 @@
        <number>9</number>
       </property>
       <item row="0" column="0">
-       <widget class="QLabel" name="CNTLabel">
+       <widget class="QLabel" name="CHTLabel">
         <property name="text">
          <string>Compilation nodes:</string>
         </property>
@@ -53,7 +53,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QTableView" name="CNTableView">
+       <widget class="QTableView" name="CHTableView">
         <property name="minimumSize">
          <size>
           <width>400</width>
@@ -71,14 +71,14 @@
       <item row="2" column="1">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="addCNButton">
+         <widget class="QPushButton" name="addCHButton">
           <property name="text">
            <string>Add</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="removeCNButton">
+         <widget class="QPushButton" name="removeCHButton">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -88,7 +88,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="editCNButton">
+         <widget class="QPushButton" name="editCHButton">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -98,7 +98,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="checkAllCNSButton">
+         <widget class="QPushButton" name="checkAllCHSButton">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -115,7 +115,7 @@
          <enum>QLayout::SetFixedSize</enum>
         </property>
         <item>
-         <widget class="QLabel" name="CNWarningIcon">
+         <widget class="QLabel" name="CHWarningIcon">
           <property name="minimumSize">
            <size>
             <width>17</width>
@@ -137,7 +137,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="CNWarningLabel">
+         <widget class="QLabel" name="CHWarningLabel">
           <property name="text">
            <string/>
           </property>

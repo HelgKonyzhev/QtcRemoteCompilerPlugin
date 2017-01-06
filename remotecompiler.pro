@@ -6,7 +6,8 @@ SOURCES += remotecompilerplugin.cpp \
     remotecompilersettingspage.cpp \
     remotecompilersettingswidget.cpp \
     remotecompilerconfigurations.cpp \
-    addcompilationnodedialog.cpp
+    addcompilationhostdialog.cpp \
+    remotecompilertoolchain.cpp
 
 HEADERS += remotecompilerplugin.h \
         remotecompiler_global.h \
@@ -14,7 +15,8 @@ HEADERS += remotecompilerplugin.h \
     remotecompilersettingspage.h \
     remotecompilersettingswidget.h \
     remotecompilerconfigurations.h \
-    addcompilationnodedialog.h
+    addcompilationhostdialog.h \
+    remotecompilertoolchain.h
 
 # Qt Creator linking
 
@@ -43,7 +45,8 @@ QTC_LIB_DEPENDS += \
     # nothing here at this time
 
 QTC_PLUGIN_DEPENDS += \
-    coreplugin
+    coreplugin \
+    projectexplorer
 
 QTC_PLUGIN_RECOMMENDS += \
     # optional plugin dependencies. nothing here at this time
@@ -57,5 +60,5 @@ RESOURCES += \
 
 FORMS += \
     remotecompilersettingswidget.ui \
-    addcompilationnodedialog.ui
+    addcompilationhostdialog.ui
 

@@ -15,14 +15,14 @@ class RemoteCompilerSettingsWidget;
 namespace RemoteCompiler {
 namespace Internal {
 
-class CNTModel : public QAbstractTableModel
+class CHTModel : public QAbstractTableModel
 {
     Q_OBJECT
 
-    QVector<CompilationNodeInfo> m_nodes;
+    QVector<CompilationHostInfo> m_hosts;
 
 public:
-    void setNodes(const QVector<CompilationNodeInfo> &nodes);
+    void setHosts(const QVector<CompilationHostInfo> &hosts);
 
 protected:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
@@ -36,13 +36,15 @@ class RemoteCompilerSettingsWidget : public QWidget
 {
     Q_OBJECT
 
-    CNTModel m_CNTModel; // CN - Compilation Node; CNT - Compilation Node Table
+    CHTModel m_CHTModel; // CH - Compilation Host; CHT - Compilation Host Table
     RemoteCompilerConfig m_config;
-    int m_selectedCNIndex;
+    int m_selectedCHIndex;
 
-    void updateCompilationNodes(const QVector<CompilationNodeInfo> &newNodes);
-    void enableCNControls(bool b);
-    bool assertNodeCorrect(const CompilationNodeInfo &node);
+    void updateCompilationHosts(const QVector<CompilationHostInfo> &newNodes);
+    void enableCHControls(bool b);
+    bool assertHostCorrect(const CompilationHostInfo &host);
+    void CHSelected(const QModelIndex &index);
+    void editCH();
 
 public:
     explicit RemoteCompilerSettingsWidget(QWidget *parent = 0);
@@ -51,11 +53,13 @@ public:
     void saveSettings();
 
 private slots:
-    void on_addCNButton_clicked();
-    void on_removeCNButton_clicked();
+    void on_addCHButton_clicked();
+    void on_removeCHButton_clicked();
     void on_createKitsCheckBox_stateChanged(int arg1);
-    void on_CNTableView_clicked(const QModelIndex &index);
-    void on_editCNButton_clicked();
+    void on_CHTableView_clicked(const QModelIndex &index);
+    void on_editCHButton_clicked();
+
+    void on_CHTableView_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::RemoteCompilerSettingsWidget *m_ui;

@@ -5,23 +5,32 @@
 #include <QObject>
 #include <QSettings>
 #include <QVector>
+#include <projectexplorer/abi.h>
 
 namespace RemoteCompiler {
 namespace Internal {
 
-struct CompilationNodeInfo
+struct CompilationHostInfo
 {
     QString user;
     QString server;
     QString password;
+    QString sysroot;
+    QString compiler;
+    QString qmake;
+    ProjectExplorer::Abi abi;
 
-    bool operator ==(const CompilationNodeInfo &n) const;
+    bool operator ==(const CompilationHostInfo &n) const;
+    bool operator !=(const CompilationHostInfo &n) const;
+    QString hostInfoStr() const;
+
+    CompilationHostInfo();
 };
 
 
 class RemoteCompilerConfig
 {
-    QVector<CompilationNodeInfo> m_compilationNodes;
+    QVector<CompilationHostInfo> m_compilationHosts;
     bool m_autoCreatingKits;
 
 public:
@@ -33,8 +42,8 @@ public:
     const bool &autoCreatingKits() const;
     void setAutoCreatingKits(bool b);
 
-    const QVector<CompilationNodeInfo> &compilationNodes() const;
-    void setCompilationNodes(const QVector<CompilationNodeInfo> &nodes);
+    const QVector<CompilationHostInfo> &compilationHosts() const;
+    void setCompilationHosts(const QVector<CompilationHostInfo> &hosts);
 };
 
 
@@ -55,6 +64,7 @@ public:
     static RemoteCompilerConfigurations *instance();
     static const RemoteCompilerConfig &currentConfig();
     static void setConfig(const RemoteCompilerConfig &config);
+    static void updateToolChainList();
 };
 
 } //Internal

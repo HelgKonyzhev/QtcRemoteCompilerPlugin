@@ -12,6 +12,9 @@ const char REMOTE_COMPILER_SETTINGS_CATEGORY[] = "XA.RemoteCompiler.";
 const char REMOTE_COMPILER_SETTINGS_TR_CATEGORY[] = QT_TRANSLATE_NOOP("Remote compiler", "Remote compiler");
 const char REMOTE_COMPILER_SETTINGS_CATEGORY_ICON[] = ":/remotecompiler/images/qtc_remote_compiler.png";
 
+const char REMOTE_COMPILER_TOOLCHAIN_TYPE[] = "remote";
+const char REMOTE_COMPILER_TOOLCHAIN_ID[] = "Qt4ProjectManager.ToolChain.RemoteCompiler";
+
 } // namespace RemoteCompiler
 } // namespace Constants
 

@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddCompilationNodeDialog</class>
- <widget class="QDialog" name="AddCompilationNodeDialog">
+ <class>AddCompilationHostDialog</class>
+ <widget class="QDialog" name="AddCompilationHostDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>144</height>
+    <width>215</width>
+    <height>245</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
   <layout class="QFormLayout" name="formLayout">
-   <item row="0" column="0">
-    <widget class="QLabel" name="userLabel">
-     <property name="text">
-      <string>User:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="serverLabel">
-     <property name="text">
-      <string>Server:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="passwordLabel">
-     <property name="text">
-      <string>Password:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
+   <property name="fieldGrowthPolicy">
+    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+   </property>
+   <item row="1" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="addCNButtonBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -48,18 +42,85 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="inputUserLineEdit"/>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="inputServerLineEdit"/>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="inputPasswordLineEdit">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-    </widget>
+   <item row="0" column="0" colspan="2">
+    <layout class="QFormLayout" name="settingsLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="userLabel">
+       <property name="text">
+        <string>User:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="inputUserLineEdit"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="serverLabel">
+       <property name="text">
+        <string>Server:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="inputServerLineEdit"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="passwordLabel">
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="inputPasswordLineEdit">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="sysrootLabel">
+       <property name="text">
+        <string>Sysroot</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="inputSysrootLineEdit">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="compilerLabel">
+       <property name="text">
+        <string>Compiler</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="inputCompilerLineEdit">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="qmakeLabel">
+       <property name="text">
+        <string>qmake</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="inputQmakeLineEdit">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -68,7 +129,7 @@
   <connection>
    <sender>addCNButtonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AddCompilationNodeDialog</receiver>
+   <receiver>AddCompilationHostDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -84,7 +145,7 @@
   <connection>
    <sender>addCNButtonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AddCompilationNodeDialog</receiver>
+   <receiver>AddCompilationHostDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

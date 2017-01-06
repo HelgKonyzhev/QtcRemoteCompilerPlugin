@@ -1,12 +1,13 @@
-#ifndef ADDCOMPILATIONNODEDIALOG_H
-#define ADDCOMPILATIONNODEDIALOG_H
+#ifndef ADDCOMPILATIONHOSTDIALOG_H
+#define ADDCOMPILATIONHOSTDIALOG_H
 
 #include "remotecompilerconfigurations.h"
 
 #include <QDialog>
+#include <projectexplorer/abiwidget.h>
 
 namespace Ui {
-class AddCompilationNodeDialog;
+class AddCompilationHostDialog;
 }
 
 namespace RemoteCompiler {
@@ -19,20 +20,21 @@ enum AddingState : unsigned char {
     PasswordSet = 0x4,
 };
 
-class AddCompilationNodeDialog : public QDialog
+class AddCompilationHostDialog : public QDialog
 {
     Q_OBJECT
 
     unsigned char m_addingState;
+    ProjectExplorer::AbiWidget *m_abiWidget;
 
     void CNDataChanged();
 
 public:
-    explicit AddCompilationNodeDialog(QWidget *parent = 0);
-    ~AddCompilationNodeDialog();
+    explicit AddCompilationHostDialog(QWidget *parent = 0);
+    ~AddCompilationHostDialog();
 
-    int exec(CompilationNodeInfo &info);
-    static int getNodeInfo(CompilationNodeInfo &info);
+    int exec(CompilationHostInfo &info);
+    static int getHostInfo(CompilationHostInfo &info, bool enabled = true);
 
 private slots:
     void on_inputUserLineEdit_textChanged(const QString &arg1);
@@ -40,10 +42,10 @@ private slots:
     void on_inputPasswordLineEdit_textChanged(const QString &arg1);
 
 private:
-    Ui::AddCompilationNodeDialog *m_ui;
+    Ui::AddCompilationHostDialog *m_ui;
 };
 
 } //Internal
 } //RemoteCompiler
 
-#endif // ADDCOMPILATIONNODEDIALOG_H
+#endif // ADDCOMPILATIONHOSTDIALOG_H
