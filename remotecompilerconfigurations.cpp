@@ -1,16 +1,21 @@
 #include "remotecompilerconfigurations.h"
 #include "remotecompilertoolchain.h"
 #include "remotecompilerconstants.h"
+#include "remotecompilerqtversion.h"
 
 #include <coreplugin/icore.h>
 #include <projectexplorer/gcctoolchain.h>
 #include <projectexplorer/toolchainmanager.h>
+#include <qtsupport/qtversionfactory.h>
+#include <qtsupport/qtversionmanager.h>
 
 
 namespace RemoteCompiler {
 namespace Internal {
 
 using namespace ProjectExplorer;
+using namespace QtSupport;
+using namespace Utils;
 
 const QLatin1String SettingsGroupKey("RemoteCompilerConfigurations");
 const QLatin1String CompilationHostsArrayKey("CompilationHostsArray");
@@ -37,6 +42,13 @@ bool CompilationHostInfo::operator !=(const CompilationHostInfo &n) const
 QString CompilationHostInfo::hostInfoStr() const
 {
     return user + QString::fromLatin1("@") + server;
+}
+
+QString CompilationHostInfo::qtVersionData() const
+{
+    return QLatin1String(Constants::REMOTE_COMPILER_QT_VERSION_DATA_HEADER) + QLatin1Char(':') +
+            hostInfoStr() + QLatin1Char(':') +
+            abi.toString();
 }
 
 CompilationHostInfo::CompilationHostInfo()
@@ -149,6 +161,7 @@ void RemoteCompilerConfigurations::setConfig(const RemoteCompilerConfig &config)
     m_instance->m_config = config;
     m_instance->save();
     m_instance->updateToolChainList();
+    m_instance->updateQtVersionList();
 }
 
 void RemoteCompilerConfigurations::updateToolChainList()
@@ -173,6 +186,31 @@ void RemoteCompilerConfigurations::updateToolChainList()
         if (tc->type() == QLatin1String(Constants::REMOTE_COMPILER_TOOLCHAIN_TYPE)) {
             if (!tc->isValid())
                 ToolChainManager::deregisterToolChain(tc);
+        }
+    }
+}
+
+void RemoteCompilerConfigurations::updateQtVersionList()
+{
+    foreach (const CompilationHostInfo &h, m_instance->currentConfig().compilationHosts()) {
+        bool isNew = true;
+        foreach (BaseQtVersion *v, QtVersionManager::versions()) {
+            if(v->type() != QLatin1String(Constants::REMOTE_COMPILER_QT) || dynamic_cast<RemoteCompilerQtVersion*>(v) == 0)
+                continue;
+
+            RemoteCompilerQtVersion *rcVer = dynamic_cast<RemoteCompilerQtVersion*>(v);
+            if(rcVer->isMyHost(h)) {
+                if(rcVer->isOutdated(h))
+                    QtVersionManager::removeVersion(rcVer);
+                else
+                    isNew = false;
+                break;
+            }
+        }
+        if(isNew) {
+//            BaseQtVersion *v = QtVersionFactory::createQtVersionFromQMakePath(FileName::fromString(h.qmake), true, h.qtVersionData());
+            BaseQtVersion *v = new RemoteCompilerQtVersion(h.hostInfoStr(), h.abi, FileName::fromString(h.qmake), true, h.qtVersionData());
+            QtVersionManager::addVersion(v);
         }
     }
 }

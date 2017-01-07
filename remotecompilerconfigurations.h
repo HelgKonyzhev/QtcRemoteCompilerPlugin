@@ -23,6 +23,7 @@ struct CompilationHostInfo
     bool operator ==(const CompilationHostInfo &n) const;
     bool operator !=(const CompilationHostInfo &n) const;
     QString hostInfoStr() const;
+    QString qtVersionData() const;
 
     CompilationHostInfo();
 };
@@ -65,6 +66,7 @@ public:
     static const RemoteCompilerConfig &currentConfig();
     static void setConfig(const RemoteCompilerConfig &config);
     static void updateToolChainList();
+    static void updateQtVersionList();
 };
 
 } //Internal

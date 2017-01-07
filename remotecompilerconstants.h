@@ -14,6 +14,8 @@ const char REMOTE_COMPILER_SETTINGS_CATEGORY_ICON[] = ":/remotecompiler/images/q
 
 const char REMOTE_COMPILER_TOOLCHAIN_TYPE[] = "remote";
 const char REMOTE_COMPILER_TOOLCHAIN_ID[] = "Qt4ProjectManager.ToolChain.RemoteCompiler";
+const char REMOTE_COMPILER_QT[] = "Qt4ProjectManager.QtVersion.RemoteCompiler";
+const char REMOTE_COMPILER_QT_VERSION_DATA_HEADER[] = "RemoteQtVersion";
 
 } // namespace RemoteCompiler
 } // namespace Constants

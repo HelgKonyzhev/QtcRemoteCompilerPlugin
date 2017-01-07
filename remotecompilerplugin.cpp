@@ -3,6 +3,7 @@
 #include "remotecompilersettingspage.h"
 #include "remotecompilerconfigurations.h"
 #include "remotecompilertoolchain.h"
+#include "remotecompilerqtversionfactory.h"
 
 #include <coreplugin/icore.h>
 #include <coreplugin/icontext.h>
@@ -46,6 +47,7 @@ bool RemoteCompilerPlugin::initialize(const QStringList &arguments, QString *err
     new RemoteCompilerConfigurations(this);
 
     addAutoReleasedObject(new Internal::RemoteCompilerSettingsPage);
+    addAutoReleasedObject(new Internal::RemoteCompilerQtVersionFactory);
     addAutoReleasedObject(new Internal::RemoteCompilerToolchainFactory);
 
     return true;
